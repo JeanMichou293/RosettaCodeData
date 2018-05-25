@@ -7,6 +7,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#define INPUT_SIZE 65536
+
 /* -------- aux stuff ---------- */
 void* mem_alloc(size_t item_size, size_t n_item)
 {
@@ -26,7 +28,7 @@ void* mem_extend(void *m, size_t new_n)
   return x + 2;
 }
 
-inline void _clear(void *m)
+void _clear(void *m)
 {
   size_t *x = (size_t*)m - 2;
   memset(m, 0, x[0] * x[1]);
@@ -218,7 +220,7 @@ bail: _del(d);
 
 int main()
 {
-  int i, fd = open("unixdict.txt", O_RDONLY);
+  /*int i, fd = open("input.txt", O_RDONLY);
 
   if (fd == -1) {
     fprintf(stderr, "Can't read file\n");
@@ -231,28 +233,39 @@ int main()
   byte *in = _new(char, st.st_size);
   read(fd, in, st.st_size);
   _setsize(in, st.st_size);
-  close(fd);
+  close(fd);*/
+  
+  byte *in = _new(char, INPUT_SIZE);
+  size_t r = read(STDIN_FILENO, in, INPUT_SIZE);
+  _setsize(in, r);
 
-  printf("input size:   %d\n", _len(in));
+  //printf("input size:   %d\n", _len(in));
 
   byte *enc = lzw_encode(in, 9);
-  printf("encoded size: %d\n", _len(enc));
+  /*printf("encoded size: %d\n", _len(enc));
+  printf("Encoded: ");
+  int j;
+  for (j = 0; j < _len(enc); j++)
+	printf("%d ", enc[j]);
+  printf("\n");
 
   byte *dec = lzw_decode(enc);
   printf("decoded size: %d\n", _len(dec));
+  printf("Decoded: ");
 
+  int i;
   for (i = 0; i < _len(dec); i++)
     if (dec[i] != in[i]) {
       printf("bad decode at %d\n", i);
       break;
     }
 
-  if (i == _len(dec)) printf("Decoded ok\n");
+  if (i == _len(dec)) printf("Decoded ok\n");*/
 
 
   _del(in);
   _del(enc);
-  _del(dec);
+  //_del(dec);
 
   return 0;
 }
