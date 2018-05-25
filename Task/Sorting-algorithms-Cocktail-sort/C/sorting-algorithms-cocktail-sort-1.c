@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <unistd.h>
+
+#define INPUT_SIZE 65536
 
 // can be any swap function. This swap is optimized for numbers.
 void swap(int *x, int *y) {
@@ -29,8 +32,11 @@ void cocktailsort(int *a, size_t n) {
 }
 
 int main(void) {
-	int a[] = { 5, -1, 101, -4, 0, 1, 8, 6, 2, 3 };
-	size_t n = sizeof(a)/sizeof(a[0]);
+	int a[INPUT_SIZE / sizeof(int)];
+	int byte_cnt = read(STDIN_FILENO, a, INPUT_SIZE);
+	/*int a[] = { 5, -1, 101, -4, 0, 1, 8, 6, 2, 3 };
+	size_t n = sizeof(a)/sizeof(a[0]);*/
+	size_t n = byte_cnt / sizeof a[0] + 1;
 
 	cocktailsort(a, n);
 	for (size_t i = 0; i < n; ++i)
