@@ -39,7 +39,6 @@ int main(void) {
 	size_t n = byte_cnt / sizeof a[0] + 1;
 
 	cocktailsort(a, n);
-	for (size_t i = 0; i < n; ++i)
-		printf("%d ", a[i]);
+	
 	return 0;
 }

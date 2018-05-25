@@ -44,11 +44,11 @@ int main () {
     int a[INPUT_SIZE / sizeof(int)];
     int byte_cnt = read(STDIN_FILENO, a, INPUT_SIZE);
     int n = byte_cnt / sizeof a[0] + 1;
-    int i;
+    /*int i;
     for (i = 0; i < n; i++)
-        printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
+        printf("%d%s", a[i], i == n - 1 ? "\n" : " ");*/
     heapsort(a, n);
-    for (i = 0; i < n; i++)
-        printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
+    /*for (i = 0; i < n; i++)
+        printf("%d%s", a[i], i == n - 1 ? "\n" : " ");*/
     return 0;
 }

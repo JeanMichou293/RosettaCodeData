@@ -55,17 +55,18 @@ int main( int argc, char* argv[] )
     int byte_cnt = read(STDIN_FILENO, arr, INPUT_SIZE);
 	EL_COUNT = byte_cnt / sizeof arr[0] + 1;
 
+/*
     std::cout << "Original: " << std::endl << "==========" << std::endl;
     for (int x = 0; x < EL_COUNT; x ++)
 	    std::cout << arr[x] << ", ";
-	std::cout << std::endl;
+	std::cout << std::endl;*/
 
     cs.sort( arr, EL_COUNT );
-
+/*
     std::cout << std::endl << std::endl << "Sorted: " << std::endl << "========" << std::endl;
     for( int x = 0; x < EL_COUNT; x ++ )
 		std::cout << arr[x] << ", ";
 	std::cout << std::endl;
-
+*/
     return 0;
 }
