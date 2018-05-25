@@ -9,7 +9,7 @@ int main( ) {
   using namespace std;
 
   string input ;
-  int key = 0;
+  int key = 3;
 
   // lambda functions
 
@@ -26,11 +26,11 @@ int main( ) {
   };
 
 
-  cout << "Enter a line of text.\n";
+  //cout << "Enter a line of text.\n";
   getline( cin , input );
 
-  cout << "Enter an integer to shift text.\n";
-  cin  >> key;
+  //cout << "Enter an integer to shift text.\n";
+  //cin  >> key;
 
   while ( (key < 1) || (key > 25) )
     {
@@ -38,17 +38,17 @@ int main( ) {
       cin  >> key;
     }
 
-  cout << "Plain:    \t" << input << endl ;
+  //cout << "Plain:    \t" << input << endl ;
 
   for ( auto & cp : input)    // use & for mutability
       cp = encrypt(cp, key);
 
-  cout << "Encrypted:\t" << input << endl;
+  /*cout << "Encrypted:\t" << input << endl;
 
   for ( auto & cp : input)
       cp = decrypt(cp, key);
 
-  cout << "Decrypted:\t" << input << endl;
+  cout << "Decrypted:\t" << input << endl;*/
 
   return 0 ;
 }
