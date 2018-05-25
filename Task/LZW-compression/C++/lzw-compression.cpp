@@ -1,5 +1,6 @@
 #include <string>
 #include <map>
+#include <fstream>
 
 // Compress a string to a list of output symbols.
 // The result will be written to the output iterator
@@ -71,7 +72,12 @@ std::string decompress(Iterator begin, Iterator end) {
 
 int main() {
   std::vector<int> compressed;
-  compress("TOBEORNOTTOBEORTOBEORNOT", std::back_inserter(compressed));
+  
+  std::string buffer = "";
+  for (std::string line; std::getline(std::cin, line);)
+        buffer += line + "\n";
+  
+  compress(buffer, std::back_inserter(compressed));
   copy(compressed.begin(), compressed.end(), std::ostream_iterator<int>(std::cout, ", "));
   std::cout << std::endl;
   std::string decompressed = decompress(compressed.begin(), compressed.end());
