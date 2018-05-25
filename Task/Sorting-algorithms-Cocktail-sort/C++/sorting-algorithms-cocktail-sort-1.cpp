@@ -1,7 +1,11 @@
 #include <iostream>
-#include <windows.h>
+//#include <windows.h>
+#include <unistd.h>
 
-const int EL_COUNT = 77, LLEN = 11;
+#define INPUT_SIZE 65536
+
+// Spaniard troll detected
+int EL_COUNT = 77;
 
 class cocktailSort
 {
@@ -45,36 +49,23 @@ private:
 
 int main( int argc, char* argv[] )
 {
-    srand( GetTickCount() );
+    //srand( GetTickCount() );
     cocktailSort cs;
-    int arr[EL_COUNT];
-
-    for( int x = 0; x < EL_COUNT; x++ )
-        arr[x] = rand() % EL_COUNT + 1;
+    int arr[INPUT_SIZE / sizeof(int)];
+    int byte_cnt = read(STDIN_FILENO, arr, INPUT_SIZE);
+	EL_COUNT = byte_cnt / sizeof arr[0] + 1;
 
     std::cout << "Original: " << std::endl << "==========" << std::endl;
-    for( int x = 0; x < EL_COUNT; x += LLEN )
-    {
-	for( int s = x; s < x + LLEN; s++ )
-	    std::cout << arr[s] << ", ";
-
+    for (int x = 0; x < EL_COUNT; x ++)
+	    std::cout << arr[x] << ", ";
 	std::cout << std::endl;
-    }
 
-    //DWORD now = GetTickCount();
     cs.sort( arr, EL_COUNT );
-    //now = GetTickCount() - now;
 
     std::cout << std::endl << std::endl << "Sorted: " << std::endl << "========" << std::endl;
-    for( int x = 0; x < EL_COUNT; x += LLEN )
-    {
-	for( int s = x; s < x + LLEN; s++ )
-	    std::cout << arr[s] << ", ";
-
+    for( int x = 0; x < EL_COUNT; x ++ )
+		std::cout << arr[x] << ", ";
 	std::cout << std::endl;
-    }
 
-    std::cout << std::endl << std::endl << std::endl << std::endl;
-    //std::cout << now << std::endl << std::endl;
     return 0;
 }
