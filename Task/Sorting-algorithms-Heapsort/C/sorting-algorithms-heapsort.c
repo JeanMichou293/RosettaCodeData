@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <unistd.h>
+
+#define INPUT_SIZE 65536
 
 int max (int *a, int n, int i, int j, int k) {
     int m = i;
@@ -38,8 +41,9 @@ void heapsort (int *a, int n) {
 }
 
 int main () {
-    int a[] = {4, 65, 2, -31, 0, 99, 2, 83, 782, 1};
-    int n = sizeof a / sizeof a[0];
+    int a[INPUT_SIZE / sizeof(int)];
+    int byte_cnt = read(STDIN_FILENO, a, INPUT_SIZE);
+    int n = byte_cnt / sizeof a[0] + 1;
     int i;
     for (i = 0; i < n; i++)
         printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
