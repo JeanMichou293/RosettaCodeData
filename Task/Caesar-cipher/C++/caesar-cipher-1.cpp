@@ -26,20 +26,20 @@ public :
 
 int main( ) {
    std::string input ;
-   std::cout << "Which text is to be encrypted ?\n" ;
+   //std::cout << "Which text is to be encrypted ?\n" ;
    getline( std::cin , input ) ;
-   std::cout << "shift ?\n" ;
-   int myshift = 0 ;
-   std::cin >> myshift ;
-   std::cout << "Before encryption:\n" << input << std::endl ;
+   //std::cout << "shift ?\n" ;
+   int myshift = 3 ;
+   //std::cin >> myshift ;
+   //std::cout << "Before encryption:\n" << input << std::endl ;
    std::transform ( input.begin( ) , input.end( ) , input.begin( ) ,
 	 MyTransform( myshift ) ) ;
-   std::cout << "encrypted:\n" ;
+   /*std::cout << "encrypted:\n" ;
    std::cout << input << std::endl ;
    myshift *= -1 ; //decrypting again
    std::transform ( input.begin( ) , input.end( ) , input.begin( ) ,
 	 MyTransform( myshift ) ) ;
    std::cout << "Decrypted again:\n" ;
-   std::cout << input << std::endl ;
+   std::cout << input << std::endl ;*/
    return 0 ;
 }
