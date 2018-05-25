@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+
+#define INPUT_SIZE 65536
 
 void merge (int *a, int n, int m) {
     int i, j, k;
@@ -26,13 +29,15 @@ void merge_sort (int *a, int n) {
 }
 
 int main () {
-    int a[] = {4, 65, 2, -31, 0, 99, 2, 83, 782, 1};
-    int n = sizeof a / sizeof a[0];
-    int i;
+    int a[INPUT_SIZE / sizeof(int)];
+    int byte_cnt = read(STDIN_FILENO, a, INPUT_SIZE);
+	int n = byte_cnt / sizeof a[0] + 1;
+	
+    /*int i;
     for (i = 0; i < n; i++)
         printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
     merge_sort(a, n);
     for (i = 0; i < n; i++)
-        printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
+        printf("%d%s", a[i], i == n - 1 ? "\n" : " ");*/
     return 0;
 }
